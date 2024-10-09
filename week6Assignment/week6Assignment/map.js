@@ -6,10 +6,12 @@ require(
         "esri/Graphic",
         "esri/layers/GraphicsLayer",
         "esri/layers/ElevationLayer",
-        "esri/views/SceneView"
+        "esri/views/SceneView",
+        "esri/widgets/Search",
+        
     ],
     function(
-       Map, Graphic, GraphicsLayer, ElevationLayer, SceneView
+       Map, Graphic, GraphicsLayer, ElevationLayer, SceneView, Search
     ) {
         $(document).ready(function() {
             Main = (function() {
@@ -53,8 +55,10 @@ require(
                         }
                     }
                 })
+
+                
                 const initMap = function(){
-               
+                            
                    
                     // var graphicsLayer = new GraphicsLayer()
                     const graphicsLayer = new GraphicsLayer();
@@ -70,12 +74,21 @@ require(
                   
                           const markerSymbol = {
                             type: "simple-marker", 
-                            color: [0, 0, 255],
+                            style: "square",
+                            color: "green",
+                            size: "8px",
                             outline: {
                               // autocasts as new SimpleLineSymbol()
-                              color: [255, 255, 255],
-                              width: 2
-                            }
+                              color: [255, 255, 0],
+                              width: 1.5
+                            },
+                            featureReduction: { //Create a clustering effect 
+                                type: "cluster",
+                                clusterMinSize: "5px",
+                                clusterMaxSize: "50px",
+                                clusterRadius: "80px"
+                              }
+
                           };
                       
                           const pointGraphic = new Graphic({
@@ -102,9 +115,15 @@ require(
                             }
                           }
                         })
-                      })
+                      });
 
-                    
+                      const searchWidget = new Search({ //Implement a search bar in the top right corner of the view
+                        view: view
+                      });
+                      view.ui.add(searchWidget, {
+                        position: "top-right",
+                        index: 2
+                      });   
 
                 }
                 initMap()
