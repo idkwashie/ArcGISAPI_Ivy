@@ -8,5 +8,4 @@ Using ArcGIS API a map was created showing important points in my life and inclu
 <br>• Clustering effect with point symbols to improve visualization, and
 <br>• A search bar that allows users to input a city name and zoom to that location on the map
 
-<https://idkwashie.github.io/ArcGISAPI_Ivy/>
-
+<https://github.com/idkwashie/ArcGISAPI_Ivy/blob/main/index.html>
